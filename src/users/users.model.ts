@@ -2,12 +2,14 @@ import {
   BelongsToMany,
   Column,
   DataType,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
 import { Role } from '../roles/roles.model';
 import { UserRoles } from '../roles/user-roles.model';
+import { Todo } from 'src/todos/todos.model';
 
 interface UserCreationAttribute {
   firstname: string;
@@ -28,7 +30,7 @@ export class User extends Model<User, UserCreationAttribute> {
     autoIncrement: true,
     primaryKey: true,
   })
-  id: string;
+  id: number;
 
   @ApiProperty({
     example: 'mail@mail.ru',
@@ -93,4 +95,7 @@ export class User extends Model<User, UserCreationAttribute> {
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
+
+  @HasMany(() => Todo)
+  todos: Todo[];
 }
