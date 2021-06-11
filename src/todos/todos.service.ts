@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { Todo } from './todos.model';
 import { Repository } from 'sequelize-typescript';
+import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Injectable()
 export class TodosService {
@@ -50,5 +51,19 @@ export class TodosService {
     return {
       message: `Задача под номером ${id} была удаленна`,
     };
+  }
+
+  async updateById(userId: number, id: number, dto: UpdateTodoDto) {
+    const todo = await this.todoRepository.findOne({ where: { userId, id } });
+    if (!todo) {
+      throw new HttpException(
+        { message: 'Некорректный уникальный идентификатор задачи' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    todo.title = dto.title;
+    todo.completed = dto.completed;
+    await todo.save();
+    return todo;
   }
 }
