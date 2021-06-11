@@ -31,7 +31,7 @@ export class TodosController {
   @ApiOperation({ summary: 'Получить все задачи' })
   @ApiResponse({ status: 200, type: [Todo] })
   @UseGuards(JwtAuthGuard)
-  @Get()
+  @Get('/all')
   getAllTodo(@CurrentUser() user: User) {
     return this.todoService.getAllTodoByUserId(user.id);
   }

@@ -35,7 +35,6 @@ export class Todo extends Model<Todo, TodoCreationAttribute> {
   })
   @Column({
     type: DataType.STRING,
-    unique: true,
     allowNull: false,
   })
   title: string;
