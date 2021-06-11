@@ -22,7 +22,7 @@ interface UserCreationAttribute {
 export class User extends Model<User, UserCreationAttribute> {
   @ApiProperty({
     example: 1,
-    description: 'Уникальный индификатор пользователя',
+    description: 'Уникальный идентификатор пользователя',
   })
   @Column({
     type: DataType.INTEGER,
@@ -44,7 +44,7 @@ export class User extends Model<User, UserCreationAttribute> {
   email: string;
 
   @ApiProperty({
-    example: '1q2w3e4r5t6y7u8i9o',
+    example: '1q2w3e4r',
     description: 'Пароль от учетной записи пользователя',
   })
   @Column({

@@ -18,7 +18,7 @@ interface RoleCreationAttribute {
 export class Role extends Model<Role, RoleCreationAttribute> {
   @ApiProperty({
     example: 1,
-    description: 'Уникальный индификатор пользователя',
+    description: 'Уникальный идентификатор пользователя',
   })
   @Column({
     type: DataType.INTEGER,
