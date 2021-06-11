@@ -43,13 +43,16 @@ export class TodosService {
     const todo = await this.todoRepository.findOne({ where: { userId, id } });
     if (!todo) {
       throw new HttpException(
-        { message: 'Некорректный уникальный идентификатор задачи' },
+        {
+          message:
+            'Некорректный уникальный идентификатор задачи или нет доступа на изменения',
+        },
         HttpStatus.BAD_REQUEST,
       );
     }
     await this.todoRepository.destroy({ where: { id } });
     return {
-      message: `Задача под номером ${id} была удаленна`,
+      id,
     };
   }
 
@@ -57,7 +60,10 @@ export class TodosService {
     const todo = await this.todoRepository.findOne({ where: { userId, id } });
     if (!todo) {
       throw new HttpException(
-        { message: 'Некорректный уникальный идентификатор задачи' },
+        {
+          message:
+            'Некорректный уникальный идентификатор задачи или нет доступа на изменения',
+        },
         HttpStatus.BAD_REQUEST,
       );
     }
