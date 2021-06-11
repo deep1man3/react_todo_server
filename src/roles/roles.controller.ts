@@ -11,6 +11,7 @@ import { RolesGuard } from '../auth/roles.guard';
 export class RolesController {
   constructor(private roleService: RolesService) {}
 
+  @ApiTags('Администратор')
   @ApiOperation({ summary: 'Создания роли' })
   @ApiResponse({ status: 200, type: [Role] })
   @Roles('ADMIN')
@@ -20,6 +21,7 @@ export class RolesController {
     return this.roleService.createRole(dto);
   }
 
+  @ApiTags('Администратор')
   @ApiOperation({ summary: 'Получения данных о роли' })
   @ApiResponse({ status: 200, type: [Role] })
   @Roles('ADMIN')
@@ -27,5 +29,15 @@ export class RolesController {
   @Get('/:value')
   getByValue(@Param('value') value: string) {
     return this.roleService.getRoleByValue(value);
+  }
+
+  @ApiTags('Администратор')
+  @ApiOperation({ summary: 'Получения списка ролей' })
+  @ApiResponse({ status: 200, type: [Role] })
+  @Roles('ADMIN')
+  @UseGuards(RolesGuard)
+  @Get('')
+  getAll() {
+    return this.roleService.findAll();
   }
 }

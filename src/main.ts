@@ -12,7 +12,7 @@ async function start() {
   const config = new DocumentBuilder()
     .setTitle('Документация React Todo Server')
     .setDescription('Документация по API для React Todo Server')
-    .setVersion('0.0.1')
+    .setVersion('0.1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document);

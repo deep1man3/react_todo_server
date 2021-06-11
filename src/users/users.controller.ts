@@ -20,6 +20,7 @@ export class UsersController {
     return this.usersService.createUser(userDto);
   }
 
+  @ApiTags('Администратор')
   @ApiOperation({ summary: 'Получения всех пользователей' })
   @ApiResponse({ status: 200, type: [User] })
   @Roles('ADMIN')
@@ -29,6 +30,7 @@ export class UsersController {
     return this.usersService.getAllUsers();
   }
 
+  @ApiTags('Администратор')
   @ApiOperation({ summary: 'Выдать роль пользователю' })
   @ApiResponse({ status: 200 })
   @Roles('ADMIN')
@@ -38,6 +40,7 @@ export class UsersController {
     return this.usersService.addRole(dto);
   }
 
+  @ApiTags('Администратор')
   @ApiOperation({ summary: 'Забанить пользователя' })
   @ApiResponse({ status: 200 })
   @Roles('ADMIN')
